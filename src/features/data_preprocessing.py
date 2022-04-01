@@ -15,7 +15,8 @@ from ..visualization.visualize import visualizeData
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 from sklearn import preprocessing
-from imblearn.over_sampling import SMOTE
+from imblearn.over_sampling import SMOTE,SMOTENC,ADASYN,KMeansSMOTE
+from imblearn.combine import SMOTEENN
 from sklearn.linear_model import LogisticRegression
 from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score
@@ -118,16 +119,15 @@ class preprocessData():
         self.X=self.data.drop(columns=["Class"])
         self.y=self.data["Class"]  
         self.names=self.X.columns
-        # self.scaler = preprocessing.StandardScaler().fit(self.X)
-        # self.scaled_df = self.scaler.transform(self.X)
-        # self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
-        # self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop')
-        # joblib.dump(self.scaler, self.scalerPicklePath) 
-        # joblib.dump(self.scaler, self.scalerPicklePathWS) 
-        
-        self.scaled_df = preprocessing.scale(self.X)
+        self.scaler = preprocessing.StandardScaler().fit(self.X)
+        self.scaled_df = self.scaler.transform(self.X)
         self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
-        self.scaled_df = self.X
+        self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop')
+        joblib.dump(self.scaler, self.scalerPicklePath) 
+        joblib.dump(self.scaler, self.scalerPicklePathWS) 
+        
+        # self.scaled_df = preprocessing.scale(self.X)
+        # self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
         print ("**"*30)
         print ("**"*10+'   Scaled data head   '+"**"*10)
         print ("**"*30)
@@ -157,7 +157,7 @@ class preprocessData():
         print (self.y_test.value_counts())
                 
     def randomSampling(self):
-        sm = SMOTE(sampling_strategy='not majority',random_state = 33)
+        sm = ADASYN(sampling_strategy='not majority',random_state = 33)
         self.X_train_new, self.y_train_new = sm.fit_resample(self.X_train, self.y_train.ravel())
         print ("**"*30)
         print ("**"*10+'   y_train_new value counts bar chart '+"**"*10)

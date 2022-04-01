@@ -24,6 +24,10 @@ class trainModel():
         self.X = train_data[0]
         self.y = train_data[1]
         self.val_data = val_data
+        self.class_weight = {0: .0001, 1: .99}
+        
+        
+        
         if self.val_data != None:
             self.val_X = val_data[0]
             self.val_y = val_data[1]
@@ -40,10 +44,13 @@ class trainModel():
     def mlModelTraining(self):
         self.clf.fit(self.X, self.y )
         self.saveMlModel()
+        
+        
     def dlModelTraining(self):
+        class_weight = {0: .0001, 1: .99}
         self.clf.fit(x=self.X, y=self.y, batch_size = 256, epochs=self.epochs,
           validation_data=(self.val_X , self.val_y), verbose=1,
-          callbacks=[self.early_stop])
+          callbacks=[self.early_stop],class_weight = self.class_weight)#,shuffle=True
         self.saveDlModel()
                 
 

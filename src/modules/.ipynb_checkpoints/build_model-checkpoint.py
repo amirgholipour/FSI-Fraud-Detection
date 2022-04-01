@@ -44,12 +44,28 @@ class buildModel():
             self.clf = KNeighborsClassifier()
     def dlModel(self):
         self.clf = tf.keras.models.Sequential([
-        tf.keras.layers.Dense(self.X.shape[1], activation='relu'),
+        tf.keras.layers.Dense(
+            256, activation="relu", input_shape=(self.X.shape[1],)
+        ),
+        tf.keras.layers.Dense(256, activation="relu"),
         tf.keras.layers.Dropout(0.3),
-        tf.keras.layers.Dense(500, activation='relu'),
+        tf.keras.layers.Dense(256, activation="relu"),
         tf.keras.layers.Dropout(0.3),
-        tf.keras.layers.Dense(1, activation='sigmoid'),
-        ])
+        tf.keras.layers.Dense(1, activation="sigmoid"),
+    ]
+            
+            
+            
+#             [
+#         tf.keras.layers.Dense(self.X.shape[1], activation='relu'),
+#         tf.keras.layers.Dropout(0.5),
+#         tf.keras.layers.Dense(128, activation='relu'),
+#         tf.keras.layers.Dropout(0.5),
+#         tf.keras.layers.Dense(128, activation='relu'),
+#         tf.keras.layers.Dropout(0.5),
+#         tf.keras.layers.Dense(1, activation='sigmoid'),
+#         ]
+        )
     
 
 
@@ -74,7 +90,7 @@ class buildModel():
         
         '''
         
-        self.clf.compile(optimizer='adam', loss='mean_absolute_error',
+        self.clf.compile(optimizer=tf.keras.optimizers.Adam(lr=0.0001), loss='binary_crossentropy',
               metrics=[tf.keras.metrics.TrueNegatives(name='True_Negatives'),
               tf.keras.metrics.FalseNegatives(name='False_Negatives'),
               tf.keras.metrics.TruePositives(name='True_Positives'),

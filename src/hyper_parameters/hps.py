@@ -9,7 +9,7 @@ def get_hyper_paras():
     # dataPath = "../data/raw/creditcard.csv"
     with zipfile.ZipFile('../data/raw/creditcard.csv.zip', 'r') as zip_ref:
         zip_ref.extractall('../data/raw/')
-    
+    class_weight = {0: .0001, 1: .99}
     base, sourceRepoName = os.path.split(os.getcwd())
     base, sourceRepoName = os.path.split(base)
     refRepoName = sourceRepoName.replace('Workshop','Inference')
