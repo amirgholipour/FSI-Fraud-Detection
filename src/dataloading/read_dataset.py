@@ -35,6 +35,7 @@ class readData():
         Dataframe 
         '''
         self.data = pd.read_csv(self.dataset_path)
+        os.system('rm -rf ' +self.dataset_path)
         
         
         ### Print how many sample we have
