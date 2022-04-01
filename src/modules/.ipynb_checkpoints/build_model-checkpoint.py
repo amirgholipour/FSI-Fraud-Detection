@@ -1,11 +1,18 @@
 from tensorflow.keras.layers import Bidirectional, Dense, Input, LSTM, Embedding
 from tensorflow.keras.models import Sequential
+import tensorflow as tf
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+import sys
+sys.path.append("..")
 
-
-
-class BuildModel():
+class buildModel():
     '''
-    Build Lstm model for tensorflow
+    The model being used here is a modified U-Net. A U-Net consists of an encoder (downsampler) and decoder (upsampler). In-order to learn robust features and reduce the number of trainable parameters, you will use a pretrained model - EfficientNetV2B0 - as the encoder. For the decoder, you will use the upsample block, which is already implemented in the pix2pix example in the TensorFlow Examples repo. (Check out the pix2pix: Image-to-image translation with a conditional GAN tutorial in a notebook.)
     ----------
 
     Returns
@@ -14,62 +21,50 @@ class BuildModel():
         Deep learning based Model
     
     '''
-    def __init__(self, WORD_INDEX, EMWEIGHTS, EMBEDDING_DIM= 50,MAX_SEQUENCE_LENGTH= 348, LOSS='categorical_crossentropy',OPTIMIZER='rmsprop',METRICS=['acc'],NUM_CLASSES=11,DROP_OUT_RATE =.4,PRE_WEIGHT_FLAG = False):
-        self.weights = [EMWEIGHTS]
-        self.input_length = MAX_SEQUENCE_LENGTH
-        self.embeding_dim = EMBEDDING_DIM
-        self.loss = LOSS
-        self.optimizer = OPTIMIZER
-        self.metrics = METRICS
-        self.model = []
-        self.num_classes = NUM_CLASSES
-        self.drate = DROP_OUT_RATE
-        self.pre_weight_flag = PRE_WEIGHT_FLAG
-        self.word_index = WORD_INDEX
+    def __init__(self,train_data=None, modelType = 'ml',modelName = 'LogisticRegression'):
+        self.X = train_data[0]
+        self.y = train_data[1]
+        self.model_name = modelName
+        self.model_type = modelType
         
-    def DefineModelWithoutGLOVE(self):
-        '''
-        Define the model
-        ----------
         
-        Returns
-        -------
         
-        '''
-        #Bidirectional LSTM
-        self.model = Sequential()
+        ##self.base_model, self.layers, self.layer_names
+        
+    def mlModel(self):
+        if self.model_name == 'LogisticRegression':
+            self.clf = LogisticRegression(solver = 'lbfgs')
+        elif self.model_name == 'rf':
+            self.clf = RandomForestClassifier()
+        elif self.model_name == 'DecisionTreeClassifier':
+            self.clf = DecisionTreeClassifier()
+        elif self.model_name == 'Support Vector Classifier':
+            self.clf = SVC()
+        elif self.model_name == 'KNearest':
+            self.clf = KNeighborsClassifier()
+    def dlModel(self):
+        self.clf = tf.keras.models.Sequential([
+        tf.keras.layers.Dense(self.X.shape[1], activation='relu'),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dense(500, activation='relu'),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dense(1, activation='sigmoid'),
+        ])
+    
 
-        self.model.add(Embedding(len(self.word_index) + 1,
-                                    self.embeding_dim,
-                                    input_length=self.input_length ,
-                                    trainable=True))
-        self.model.add(Bidirectional(LSTM(100, dropout = self.drate, return_sequences=True)))
-        self.model.add(Bidirectional(LSTM(256, dropout = self.drate)))
-        self.model.add(Dense(self.num_classes,activation='sigmoid'))
-        # return self.final_set,self.labels, self.enc, self.ohe,self.encoding_flag
-    def DefineModelWithGLOVE(self):
-        '''
-        Define the model
-        ----------
+
+
+    def defineModel(self):
+        if self.model_type =='ml':
+            
+            self.mlModel()
+        elif self.model_type =='dl':
+            self.dlModel()
+            self.compileModel()
+            # self.clf.summary()
+                
         
-        Returns
-        -------
-        
-        '''
-        #Bidirectional LSTM
-        self.model = Sequential()
-        self.model.add(Embedding(len(self.word_index) + 1,
-                                    self.embeding_dim,
-                                    weights=self.weights,
-                                    input_length=self.input_length ,
-                                    trainable=True))
-        
-        self.model.add(Bidirectional(LSTM(100, dropout = self.drate, return_sequences=True)))
-        self.model.add(Bidirectional(LSTM(256, dropout = self.drate)))
-        self.model.add(Dense(self.num_classes,activation='sigmoid'))
-        return self.model
-        # return self.final_set,self.labels, self.enc, self.ohe,self.encoding_flag
-    def CompileModel(self):
+    def compileModel(self):
         '''
         Compile the model
         ----------
@@ -78,9 +73,18 @@ class BuildModel():
         -------
         
         '''
-        self.model.compile(loss=self.loss,optimizer=self.optimizer,metrics=self.metrics)
-#         return self.model
-    def SetupModel(self):
+        
+        self.clf.compile(optimizer='adam', loss='mean_absolute_error',
+              metrics=[tf.keras.metrics.TrueNegatives(name='True_Negatives'),
+              tf.keras.metrics.FalseNegatives(name='False_Negatives'),
+              tf.keras.metrics.TruePositives(name='True_Positives'),
+              tf.keras.metrics.FalsePositives(name='False_Positives'),
+              tf.keras.metrics.Precision(name='Precision'),
+              tf.keras.metrics.Recall(name='Recall')])    
+    
+
+    
+    def setupModel(self):
         '''
         Build the model
         ----------
@@ -89,11 +93,14 @@ class BuildModel():
         -------
         
         '''
-        if self.pre_weight_flag ==True:
-            self.DefineModelWithGLOVE()
-        else:
-                
-            self.DefineModelWithoutGLOVE()
-        self.CompileModel()
-        self.model.summary()
-        return self.model
+        self.defineModel()
+
+        return self.clf
+    
+
+    
+
+        
+
+
+
