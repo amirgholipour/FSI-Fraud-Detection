@@ -40,6 +40,8 @@ class trainModel():
     def mlModelTraining(self):
         self.clf.fit(self.X, self.y )
         self.saveMlModel()
+        
+        
     def dlModelTraining(self):
         self.clf.fit(x=self.X, y=self.y, batch_size = 256, epochs=self.epochs,
           validation_data=(self.val_X , self.val_y), verbose=1,

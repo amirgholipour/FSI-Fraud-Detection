@@ -15,7 +15,7 @@ import sys
 import os
 import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-modelType='ml'
+
 def load():
     print("Loading model",os.getpid())
     if modelType == 'ml':
@@ -26,11 +26,11 @@ def load():
 
 
     print("Loaded model")
-    return model
+    return model, labelencoder,tokenizer
 
 
 
-model= load()
+model, labelencoder, tokenizer = load(modelType='ml')
 print('Models have just loaded!!!!')
 def predict(X):
     

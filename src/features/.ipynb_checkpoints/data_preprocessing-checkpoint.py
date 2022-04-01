@@ -6,7 +6,7 @@ warnings.filterwarnings('ignore')
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
-
+import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -36,8 +36,9 @@ class preprocessData():
     ohe:
         One hot  Encoder definition file
     '''
-    def __init__(self, data = None):
+    def __init__(self, data = None,scalerPicklePath=None):
         self.data = data
+        self.scalerPicklePath = scalerPicklePath
         
         
 
@@ -117,8 +118,16 @@ class preprocessData():
         self.X=self.data.drop(columns=["Class"])
         self.y=self.data["Class"]  
         self.names=self.X.columns
+        # self.scaler = preprocessing.StandardScaler().fit(self.X)
+        # self.scaled_df = self.scaler.transform(self.X)
+        # self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
+        # self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop')
+        # joblib.dump(self.scaler, self.scalerPicklePath) 
+        # joblib.dump(self.scaler, self.scalerPicklePathWS) 
+        
         self.scaled_df = preprocessing.scale(self.X)
         self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
+        self.scaled_df = self.X
         print ("**"*30)
         print ("**"*10+'   Scaled data head   '+"**"*10)
         print ("**"*30)
@@ -148,7 +157,7 @@ class preprocessData():
         print (self.y_test.value_counts())
                 
     def randomSampling(self):
-        sm = SMOTE(sampling_strategy='minority',random_state = 33)
+        sm = SMOTE(sampling_strategy='not majority',random_state = 33)
         self.X_train_new, self.y_train_new = sm.fit_resample(self.X_train, self.y_train.ravel())
         print ("**"*30)
         print ("**"*10+'   y_train_new value counts bar chart '+"**"*10)
