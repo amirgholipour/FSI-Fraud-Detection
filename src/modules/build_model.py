@@ -53,18 +53,7 @@ class buildModel():
         tf.keras.layers.Dropout(0.3),
         tf.keras.layers.Dense(1, activation="sigmoid"),
     ]
-            
-            
-            
-#             [
-#         tf.keras.layers.Dense(self.X.shape[1], activation='relu'),
-#         tf.keras.layers.Dropout(0.5),
-#         tf.keras.layers.Dense(128, activation='relu'),
-#         tf.keras.layers.Dropout(0.5),
-#         tf.keras.layers.Dense(128, activation='relu'),
-#         tf.keras.layers.Dropout(0.5),
-#         tf.keras.layers.Dense(1, activation='sigmoid'),
-#         ]
+
         )
     
 
@@ -91,10 +80,11 @@ class buildModel():
         '''
         
         self.clf.compile(optimizer=tf.keras.optimizers.Adam(lr=0.0001), loss='binary_crossentropy',
-              metrics=[tf.keras.metrics.TrueNegatives(name='True_Negatives'),
-              tf.keras.metrics.FalseNegatives(name='False_Negatives'),
-              tf.keras.metrics.TruePositives(name='True_Positives'),
-              tf.keras.metrics.FalsePositives(name='False_Positives'),
+              metrics=[
+                         # tf.keras.metrics.TrueNegatives(name='True_Negatives'),
+              # tf.keras.metrics.FalseNegatives(name='False_Negatives'),
+              # tf.keras.metrics.TruePositives(name='True_Positives'),
+              # tf.keras.metrics.FalsePositives(name='False_Positives'),
               tf.keras.metrics.Precision(name='Precision'),
               tf.keras.metrics.Recall(name='Recall')])    
     

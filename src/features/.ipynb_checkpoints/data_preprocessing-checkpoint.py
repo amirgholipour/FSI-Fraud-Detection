@@ -157,7 +157,7 @@ class preprocessData():
         print (self.y_test.value_counts())
                 
     def randomSampling(self):
-        sm = ADASYN(sampling_strategy='not majority',random_state = 33)
+        sm = SMOTE(sampling_strategy='all',random_state = 33)
         self.X_train_new, self.y_train_new = sm.fit_resample(self.X_train, self.y_train.ravel())
         print ("**"*30)
         print ("**"*10+'   y_train_new value counts bar chart '+"**"*10)
