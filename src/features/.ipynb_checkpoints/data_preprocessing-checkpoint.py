@@ -109,6 +109,7 @@ class preprocessData():
         plt.title("Frequency of the target classes", size=20)
         plt.xlabel("Target Labels", size = 18)    
         print ("Below is the exact frequency values for both the target labels.")
+        print(self.data["Class"].value_counts())
         self.target = pd.DataFrame(self.data["Class"].value_counts())
         self.target.style.background_gradient(cmap="Reds")
         

@@ -55,9 +55,6 @@ class buildModel():
     ]
 
         )
-    
-
-
 
     def defineModel(self):
         if self.model_type =='ml':
@@ -102,11 +99,3 @@ class buildModel():
         self.defineModel()
 
         return self.clf
-    
-
-    
-
-        
-
-
-

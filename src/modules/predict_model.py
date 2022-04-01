@@ -40,6 +40,6 @@ class predictor(object):
         else:
                 
                  predict_x=self.clf.predict(self.data_x.values) 
-                 y_pred=np.argmax(predict_x,axis=1)
+                 y_pred=np.round(predict_x)
                  cnf_matrix = confusion_matrix(self.data_y,y_pred)
                  visualizeData(cm_data=cnf_matrix).confusionMatrixPlot()
