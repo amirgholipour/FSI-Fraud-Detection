@@ -17,7 +17,7 @@ boto3==1.18.60
 defusedxml==0.7.1
 google-cloud-storage==1.38.0
 keras==2.8.0
-Pillow>=9.0.1pillow==8.3.2
+pillow==8.3.2
 pyopenssl==20.0.1
 scipy==1.7.1
 scikit-learn==1.0.2
