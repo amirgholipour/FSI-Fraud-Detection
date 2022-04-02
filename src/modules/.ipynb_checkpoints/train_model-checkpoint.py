@@ -50,7 +50,7 @@ class trainModel():
         
         self.clf.fit(x=self.X, y=self.y, batch_size = 2048, epochs=self.epochs,
           validation_data=(self.val_X , self.val_y), verbose=1,
-          callbacks=[self.early_stop],class_weight = {0: .001, 1: .99})#,class_weight = {0: .01, 1: .99})#,class_weight = self.class_weight)#,shuffle=True
+          callbacks=[self.early_stop],class_weight = {0: .001, 1: .999})#,class_weight = {0: .01, 1: .99})#,class_weight = self.class_weight)#,shuffle=True
         self.saveDlModel()
                 
 
