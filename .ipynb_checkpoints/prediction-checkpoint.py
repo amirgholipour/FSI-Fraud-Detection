@@ -15,7 +15,7 @@ import sys
 import os
 import pickle
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
+modelType='ml'
 def load():
     print("Loading model",os.getpid())
     if modelType == 'ml':
@@ -24,60 +24,40 @@ def load():
 
         model = tf.keras.models.load_model('./models/finalized_dl_model.h5', compile=False)
 
-
+    scaler = joblib.load('./models/scaler.pkl')
+    
     print("Loaded model")
-    return model, labelencoder,tokenizer
+    return model,scaler
 
 
 
-model, labelencoder, tokenizer = load(modelType='ml')
+model= load()
 print('Models have just loaded!!!!')
 def predict(X):
     
     print ('Step1: Loading models')
     print (X['data'])
-    # model, labelencoder, tokenizer = load()
-    
     print ('Step1 finished!!!!')
-    print(labelencoder.classes_)
-    # data = request.get("data", {}).get("ndarray")
-    # mult_types_array = np.array(data, dtype=object)
     print ('Step2: tokenise the input data.')
-    output = tokenizer.texts_to_sequences(X['data'])
-    print ('Step2 finished!!!!')
-    print(output)
-    print ('Step3: Do zero padding on the tokeize data.')
-    model_ready_input = pad_sequences(output, maxlen=348,padding='post')
+    model_ready_input = scaler.transform(X['data'])
     print(model_ready_input)
+    print ('Step2 finished!!!!')
+    
+
+    print ('Step3:  Do prediction!!!')
+    if modelType=='dl':
+        result = model.predict(model_ready_input)
+        predicted_class=np.round(result)
+    else:
+        predicted_class = model.predict(model_ready_input)
     print ('Step3 finished!!!!')
-    print ('Step4:  Do prediction!!!')
-    result = model.predict(model_ready_input)
-    print ('Step4 finished!!!!')
-    print(result.shape)
-    
-    
-    
-    predicted_class =   np.argmax(result)                                  
+                            
     print('Predicted Class name: ', predicted_class)
-    predicted_class_prob = str(np.max(result))
-    print('Predicted class Certainty: ', predicted_class_prob)
-    pred_label = labelencoder.inverse_transform([predicted_class])
-    print(pred_label[0])
-    print(type(pred_label))
-#     print ('step5......')
-#     result = tf.sigmoid(result)
-#     print(result)
-#     result = tf.math.argmax(result,axis=1)
-#     print ('step6......')
-#     print(result)
-#     print(result.shape)
-#     pred_label = labelencoder.inverse_transform(result)
-#     print(pred_label)
-#     print ('step7......')
-#     print ('Step 8: Retrun Results!!!', str(pred_label))
+
     
-    json_results = {"Predicted Class": str(predicted_class),"Predicted Class Label": pred_label.tolist(), "Predicted Certainty Score":predicted_class_prob}
-    print(json_results)
+    json_results = {"Predicted Class": str(predicted_class)}
+    # json_results = {"Predicted Class": str(predicted_class),"Predicted Class Label": pred_label.tolist(), "Predicted Certainty Score":predicted_class_prob}
+    # print(json_results)
     return json_results
     
 
