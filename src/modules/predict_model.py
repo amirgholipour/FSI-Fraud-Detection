@@ -3,10 +3,9 @@ import os
 import tensorflow as tf
 import numpy as np
 from pathlib import Path
-from sklearn.metrics import confusion_matrix,precision_recall_curve,auc,roc_auc_score,roc_curve,recall_score,classification_report 
+from sklearn.metrics import confusion_matrix
 from ..visualization.visualize import visualizeData
 import matplotlib.pyplot as plt
-
 class predictor(object):
     
     def __init__(self, clf=None,data=None,modelType = 'ml'):
@@ -20,27 +19,23 @@ class predictor(object):
 
     def predict(self):
         if self.model_type == 'ml':
-                 y_pred = self.clf.predict(self.data_x.values)
-                 cnf_matrix = confusion_matrix(self.data_y,y_pred)
-                 visualizeData(cm_data=cnf_matrix).confusionMatrixPlot()
-#                  # Compute confusion matrix
-#                  cnf_matrix = confusion_matrix(y_test,y_pred)
-#                  np.set_printoptions(precision=2)
-
-#                  print("Recall metric in the testing dataset: ", cnf_matrix[1,1]/(cnf_matrix[1,0]+cnf_matrix[1,1]))
-
-#                     # Plot non-normalized confusion matrix
-#                  class_names = [0,1]
-#                  plt.figure()
-#                  plot_confusion_matrix(cnf_matrix
-#                                           , classes=class_names
-#                                           , title='Confusion matrix')
-#                  plt.show()
+                 y_pred1 = self.clf.predict(self.data_x.values)
+                 y_pred = self.clf.predict_proba(self.data_x)[:, 1]
+                 cnf_matrix = confusion_matrix(self.data_y,y_pred1)
+                
+                
+                 vD = visualizeData(cm_data=cnf_matrix,y_true = self.data_y, y_pred = y_pred)
+                 vD.precisionRecallDisplay()
                  
+                 vD.confusionMatrixPlot()
+
         else:
                 
-                 predict_x=self.clf.predict(self.data_x.values) 
-                 y_pred=np.round(predict_x)
-                 cnf_matrix = confusion_matrix(self.data_y,y_pred)
-                 precision, recall, thresholds = precision_recall_curve(y_true, y_scores)   
-                 visualizeData(cm_data=cnf_matrix).confusionMatrixPlot()
+                 y_pred=self.clf.predict(self.data_x.values) 
+                 y_pred1=np.round(y_pred)
+
+                 cnf_matrix = confusion_matrix(self.data_y,y_pred1)
+                 vD = visualizeData(cm_data=cnf_matrix,y_true = self.data_y, y_pred = y_pred)
+                 vD.precisionRecallDisplay()
+                 
+                 vD.confusionMatrixPlot()

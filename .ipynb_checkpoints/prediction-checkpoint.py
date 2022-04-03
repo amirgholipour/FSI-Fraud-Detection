@@ -1,21 +1,15 @@
-# Imports
-import glob
 import json
 import os
-from os.path import splitext,basename
-import uuid
-import base64
+
 
 import tensorflow as tf
 import joblib
 import numpy as np
-import json
-import traceback
-import sys
-import os
+
 import pickle
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-modelType='ml'
+
+
+modelType='dl'
 def load():
     print("Loading model",os.getpid())
     if modelType == 'ml':
@@ -31,33 +25,39 @@ def load():
 
 
 
-model= load()
+model,scaler= load()
+class_name = ['None Fraud', 'Fraud']
 print('Models have just loaded!!!!')
 def predict(X):
-    
     print ('Step1: Loading models')
     print (X['data'])
+    print(type(X['data']))
     print ('Step1 finished!!!!')
-    print ('Step2: tokenise the input data.')
-    model_ready_input = scaler.transform(X['data'])
+    print ('Step2: Scaled the input data.')
+    # model_ready_input = scaler.transform([X['data']])
+    model_ready_input = scaler.transform([X['data']])
     print(model_ready_input)
     print ('Step2 finished!!!!')
     
 
-    print ('Step3:  Do prediction!!!')
+    print ('Step3:  Perform prediction!!!')
     if modelType=='dl':
-        result = model.predict(model_ready_input)
-        predicted_class=np.round(result)
+        pred_prob = model.predict(model_ready_input)
+        predicted_class=int(np.round(pred_prob))
     else:
-        predicted_class = model.predict(model_ready_input)
+        predicted_class = int(model.predict(model_ready_input))
+        pred_prob = model.predict_proba(model_ready_input)[:, 1]
+        # predicted_class=np.round(result)
     print ('Step3 finished!!!!')
-                            
-    print('Predicted Class name: ', predicted_class)
+    # print(result)
+    print(predicted_class)
+    pred_label = class_name[predicted_class]
+    print('Predicted Class name: ', pred_label)
 
     
-    json_results = {"Predicted Class": str(predicted_class)}
-    # json_results = {"Predicted Class": str(predicted_class),"Predicted Class Label": pred_label.tolist(), "Predicted Certainty Score":predicted_class_prob}
-    # print(json_results)
+    # json_results = {"Predicted Class": str(predicted_class)}
+    json_results = {"Predicted value": str(predicted_class),"Predicted Class Label": pred_label,"Predicted Class Probability": pred_prob.tolist()}
+    print(json_results)
     return json_results
     
 
@@ -71,5 +71,3 @@ class JsonSerializer(json.JSONEncoder):
         elif isinstance(obj, (np.ndarray,)):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
-    
-
