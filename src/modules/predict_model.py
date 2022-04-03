@@ -42,4 +42,5 @@ class predictor(object):
                  predict_x=self.clf.predict(self.data_x.values) 
                  y_pred=np.round(predict_x)
                  cnf_matrix = confusion_matrix(self.data_y,y_pred)
+                 precision, recall, thresholds = precision_recall_curve(y_true, y_scores)   
                  visualizeData(cm_data=cnf_matrix).confusionMatrixPlot()
