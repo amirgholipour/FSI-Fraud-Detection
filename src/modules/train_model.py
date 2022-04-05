@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.callbacks import EarlyStopping
-import pickle
+import joblib
 import matplotlib.pyplot as plt
 import sys
 
@@ -57,8 +57,8 @@ class trainModel():
     def saveMlModel(self):
         # save the model to disk
         self.save_path_workshop = self.save_path.replace('Inference','Workshop')
-        pickle.dump(self.clf, open(self.save_path, 'wb'))
-        pickle.dump(self.clf, open(self.save_path_workshop, 'wb'))
+        joblib.dump(self.clf, self.save_path)
+        joblib.dump(self.clf, self.save_path_workshop)
     def saveDlModel(self):
         # save the model to disk
         self.save_path_workshop = self.save_path.replace('Inference','Workshop')
