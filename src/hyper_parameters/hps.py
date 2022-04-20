@@ -3,7 +3,7 @@ import zipfile
 def get_hyper_paras():
     BATCH = 64
     EPOCHS = 100
-    model_Type = 'dl'
+    model_Type = 'ml'
     model_Name = 'LogisticRegression'
     
     # dataPath = "../data/raw/creditcard.csv"
