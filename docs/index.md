@@ -36,8 +36,5 @@ If you're ready,  [let's start!](step1.md)
 * [Step 2: The Jupyter environment](step2.md)
 * [Step 3: Notebooks](step3.md)
 * [Step 4: FSI Credit Fraud Detection](step4.md)
-* [Step 5: Packaging the model as an API](step5.md)
-* [Step 6: Packaging our application](step6.md)
-* [Step 7: Testing the application](step7.md)
 * [Conclusion](step8.md)
 <!-- endnav -->
