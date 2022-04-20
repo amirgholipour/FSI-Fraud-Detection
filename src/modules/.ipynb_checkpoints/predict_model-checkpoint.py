@@ -24,7 +24,7 @@ class predictor(object):
                  cnf_matrix = confusion_matrix(self.data_y,y_pred1)
                 
                 
-                 vD = visualizeData(cm_data=cnf_matrix,y_true = self.data_y, y_pred = y_pred)
+                 vD = visualizeData(cm_data=cnf_matrix,y_true = self.data_y, y_pred = y_pred,modelType=self.model_type)
                  vD.precisionRecallDisplay()
                  
                  vD.confusionMatrixPlot()
@@ -35,7 +35,7 @@ class predictor(object):
                  y_pred1=np.round(y_pred)
 
                  cnf_matrix = confusion_matrix(self.data_y,y_pred1)
-                 vD = visualizeData(cm_data=cnf_matrix,y_true = self.data_y, y_pred = y_pred)
+                 vD = visualizeData(cm_data=cnf_matrix,y_true = self.data_y, y_pred = y_pred,modelType=self.model_type)
                  vD.precisionRecallDisplay()
                  
                  vD.confusionMatrixPlot()

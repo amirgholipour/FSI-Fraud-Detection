@@ -1,7 +1,6 @@
-import tensorflow as tf
+import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-from IPython.display import clear_output
 from sklearn.metrics import confusion_matrix,PrecisionRecallDisplay
 
 
@@ -21,9 +20,9 @@ class visualizeData():
     ohe:
         One hot  Encoder definition file
     '''
-    def __init__(self, cm_data = None, y_true = None, y_pred = None,modelName = 'Logistic Regression'):
+    def __init__(self, cm_data = None, y_true = None, y_pred = None,modelType = 'ML'):
         self.cm= cm_data
-        self.model_name = modelName
+        self.modelType = modelType
         self.y_pred = y_pred
         self.y_true = y_true
     def confusionMatrixPlot(self):
@@ -33,12 +32,16 @@ class visualizeData():
         sns.heatmap(self.cm, annot=True, fmt = 'g', cmap="Reds", cbar = False)
         plt.xlabel("Predicted Label", size = 18)
         plt.ylabel("True Label", size = 18)
-        plt.title("Confusion Matrix Plotting for "+ self.model_name +"  model", size = 20)
+        plt.title("Confusion Matrix Plotting for "+ self.modelType +"  model", size = 20)
         plt.show()
+        print(os.getcwd())
+        plt.savefig('confusionMatrixPlot'+'_'+self.modelType+'.png')
         
     def precisionRecallDisplay(self):
         PrecisionRecallDisplay.from_predictions(self.y_true, self.y_pred)
         plt.show()
+        print(os.getcwd())
+        plt.savefig('PrecisionRecallDisplay'+'_'+self.modelType+'.png')
 
 
         
