@@ -86,6 +86,12 @@ class preprocessData():
             plt.xlabel(feature, fontsize=12)
             locs, labels = plt.xticks()
             plt.tick_params(axis='both', which='major', labelsize=12)
+        
+        self.current_path= os.getcwd()
+        self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
+        
+        
+        plt.savefig(self.inference_path+'Distribution.png')
         plt.show()
         
     def plotCorrelation(self):
@@ -96,6 +102,11 @@ class preprocessData():
         plt.title('Credit Card Transactions features correlation plot')
         corr = self.data.corr()
         sns.heatmap(corr,xticklabels=corr.columns,yticklabels=corr.columns,linewidths=.1,cmap="Greens",fmt='.1f',annot=True)
+        self.current_path= os.getcwd()
+        self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
+        
+        
+        plt.savefig(self.inference_path+'Correlations.png')
         plt.show()
 
         
@@ -112,6 +123,12 @@ class preprocessData():
         print(self.data["Class"].value_counts())
         self.target = pd.DataFrame(self.data["Class"].value_counts())
         self.target.style.background_gradient(cmap="Reds")
+        self.current_path= os.getcwd()
+        self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
+        
+        
+        plt.savefig(self.inference_path+'Frequency.png')
+
         
         
     def dataScaling(self):
@@ -165,7 +182,12 @@ class preprocessData():
         print ("**"*30)
         plt.figure()
         pd.Series(self.y_train_new).value_counts().plot(kind="bar")
+        self.current_path= os.getcwd()
+        self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
         
+        
+        plt.savefig(self.inference_path+'Sampling.png')
+
         
         
         

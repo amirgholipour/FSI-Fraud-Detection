@@ -3,7 +3,7 @@ import zipfile
 def get_hyper_paras():
     BATCH = 64
     EPOCHS = 100
-    model_Type = 'ml'
+    model_Type = 'dl'
     model_Name = 'LogisticRegression'
     
     # dataPath = "../data/raw/creditcard.csv"
@@ -17,9 +17,11 @@ def get_hyper_paras():
     if model_Type == 'ml':
     
         model_dir= base +'/'+refRepoName +'/'+ 'models/finalized_ml_model.sav'
+        model_Name = 'LogisticRegression'
         # model_dir_workshop= base +'/'+sourceRepoName +'/'+ 'models/finalized_ml_model.pkl'
     else:
         model_dir= base +'/'+refRepoName +'/'+ 'models/finalized_dl_model.h5'
+        model_Name = 'MLP'
         # model_dir_workshop= base +'/'+sourceRepoName +'/'+ 'models/finalized_dl_model.h5'
         
     dataPath = base +'/'+sourceRepoName +'/'+'data/raw/creditcard.csv'

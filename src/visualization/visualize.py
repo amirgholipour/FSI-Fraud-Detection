@@ -33,15 +33,22 @@ class visualizeData():
         plt.xlabel("Predicted Label", size = 18)
         plt.ylabel("True Label", size = 18)
         plt.title("Confusion Matrix Plotting for "+ self.modelType +"  model", size = 20)
+        
+        self.current_path= os.getcwd()
+        self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
+        
+        
+        plt.savefig(self.inference_path+'confusionMatrixPlot'+'_'+self.modelType+'.png')
         plt.show()
-        print(os.getcwd())
-        plt.savefig('confusionMatrixPlot'+'_'+self.modelType+'.png')
         
     def precisionRecallDisplay(self):
         PrecisionRecallDisplay.from_predictions(self.y_true, self.y_pred)
+        
+        self.current_path= os.getcwd()
+        self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
+        
+        plt.savefig(self.inference_path+'PrecisionRecallDisplay'+'_'+self.modelType+'.png')
         plt.show()
-        print(os.getcwd())
-        plt.savefig('PrecisionRecallDisplay'+'_'+self.modelType+'.png')
 
 
         
