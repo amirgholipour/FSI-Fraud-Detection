@@ -9,7 +9,7 @@ nav_order: 1
 
 Welcome!
 
-In this introductory workshop, you'll learn how to use **Red Hat OpenShift Data Science** or **Red Hat OpenShift Data Hub** to do Credit Fraud Detection, using a modified <a href="https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/" class="external">U-Net</a>
+In this introductory workshop, you'll learn how to use **Red Hat OpenShift Data Science** or **Red Hat OpenShift Data Hub** to do Credit Fraud Detection.
 
 * We'll start from a data like this:
 
