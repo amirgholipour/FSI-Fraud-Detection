@@ -53,7 +53,7 @@ At the end of the training/testing, it will start to deploy the model:
 Finally, at the end of this notebook, it tests the application via passing the new data! 
 
 {:refdef: style="text-align: center;"}
-![alt text](./assets/img/fsi_result.png "FSI Fraud notebook")
+![alt text](./assets/img/fsi_results.png "FSI Fraud notebook")
 {: refdef}
 
 
