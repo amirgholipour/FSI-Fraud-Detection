@@ -13,9 +13,9 @@ In this introductory workshop, you'll learn how to use **Red Hat OpenShift Data 
 
 * We'll start from a data like this:
 
-{:refdef: style="text-align: center;"}
+
 ![alt text](./assets/img/sample.png "PCA transformed credit data")
-{: refdef}
+
 
 * Then we'll automatically produce the semantic image segmentation results like this image:
 
