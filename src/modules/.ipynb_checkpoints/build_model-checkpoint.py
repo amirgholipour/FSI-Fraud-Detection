@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier,ExtraTreesClassifier
 import matplotlib.pyplot as plt
 import sys
 sys.path.append("..")
@@ -32,16 +32,19 @@ class buildModel():
         ##self.base_model, self.layers, self.layer_names
         
     def mlModel(self):
-        if self.model_name == 'LogisticRegression':
-            self.clf = LogisticRegression(solver = 'lbfgs')
-        elif self.model_name == 'rf':
+        if self.model_name == 'RandomForestClassifier':
             self.clf = RandomForestClassifier()
+        elif self.model_name == 'ExtraTreesClassifier':
+            self.clf = ExtraTreesClassifier()
         elif self.model_name == 'DecisionTreeClassifier':
             self.clf = DecisionTreeClassifier()
-        elif self.model_name == 'Support Vector Classifier':
+        elif self.model_name == 'SupportVectorClassifier':
             self.clf = SVC()
-        elif self.model_name == 'KNearest':
+        elif self.model_name == 'KNeighborsClassifier':
             self.clf = KNeighborsClassifier()
+        else:
+            self.clf = LogisticRegression(solver = 'lbfgs')
+            self.model_name == 'LogisticRegression'
     def dlModel(self):
         self.clf = tf.keras.models.Sequential([
         tf.keras.layers.Dense(
