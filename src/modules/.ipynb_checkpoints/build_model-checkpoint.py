@@ -1,6 +1,7 @@
 from tensorflow.keras.layers import Bidirectional, Dense, Input, LSTM, Embedding
 from tensorflow.keras.models import Sequential
 import tensorflow as tf
+import tensorflow_addons as tfa
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
@@ -52,7 +53,7 @@ class buildModel():
         ),
 
         tf.keras.layers.Dropout(0.5),
-        tf.keras.layers.Dense(128, activation="relu"),
+        tf.keras.layers.Dense(156, activation="relu"),
         tf.keras.layers.Dropout(0.5),
         tf.keras.layers.Dense(1, activation="sigmoid"),
     ]
@@ -79,14 +80,15 @@ class buildModel():
         
         '''
         
-        self.clf.compile(optimizer=tf.keras.optimizers.Adam(lr=0.0001), loss='binary_crossentropy',
+        self.clf.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), loss='binary_crossentropy',
               metrics=[
                          # tf.keras.metrics.TrueNegatives(name='True_Negatives'),
               # tf.keras.metrics.FalseNegatives(name='False_Negatives'),
               # tf.keras.metrics.TruePositives(name='True_Positives'),
               # tf.keras.metrics.FalsePositives(name='False_Positives'),
               tf.keras.metrics.Precision(name='Precision'),
-              tf.keras.metrics.Recall(name='Recall')])    
+              tf.keras.metrics.Recall(name='Recall'),
+              tfa.metrics.F1Score(num_classes=2, name='F1Score', average="micro")])    
     
 
     

@@ -36,14 +36,14 @@ class trainModel():
         self.save_path_workshop = self.save_path.replace('Inference','Workshop').replace('deploy','models')
 
         if self.model_type =='dl':
-            self.early_stop = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience = 20)
+            self.early_stop = EarlyStopping(monitor='val_F1Score', mode='max', verbose=1, patience = 20)
 
             self.model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
                 filepath=self.save_path,
-                save_weights_only=True,
-                monitor='val_Precision',
+                save_weights_only=False,
+                monitor='val_F1Score',
                 mode='max',
-                save_best_only=False)
+                save_best_only=True)
             self.epochs = epochs
         
         
