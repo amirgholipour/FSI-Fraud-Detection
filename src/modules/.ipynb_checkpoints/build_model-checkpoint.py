@@ -51,10 +51,8 @@ class buildModel():
             512, activation="relu", input_shape=(self.X.shape[1],)
         ),
         tf.keras.layers.Dropout(0.5),
-        tf.keras.layers.Dense(512, activation="relu"),
-        tf.keras.layers.Dropout(0.5),
-        tf.keras.layers.Dense(256, activation="relu"),
-        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.Dense(128, activation="relu"),
+        tf.keras.layers.Dropout(0.3),
         tf.keras.layers.Dense(1, activation="sigmoid"),
     ]
 
