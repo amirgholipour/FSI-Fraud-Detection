@@ -21,9 +21,7 @@ In the "file-browser" like window you're in right now, you'll find the files and
 * Enter this URL, `https://github.com/amirgholipour/FSI-Fraud-Detection-Workshop.git`, then click on "CLONE":
 
 ![alt text](./assets/img/clone_start_wo.png "Git")
-* Enter this URL, `https://github.com/amirgholipour/FSI-Fraud-Detection-Inference.git`, then click on "CLONE":
 
-![alt text](./assets/img/clone_start_in.png "Git")
 
 * It takes a few seconds, after which you can double-click and navigate to the newly-created folder, `FSI-Fraud-Detection-Workshop`:
 

@@ -23,15 +23,13 @@ Once you have authorized access, you will be taken to the JupyterHub "Spawner Op
 
 * From the "Start a notebook server" page, there are multiple options you can choose from to launch your environment.
   * For the **Notebook Image** , select **TensorFlow**, as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do image recognition.
-  * From the **Container size** dropdown, select `Default`.
+  * From the **Container size** dropdown, select `Large`.
 
 ![alt text](./assets/img/j_start.png "select the environment")
 
 
   * Enter your personal  **Environment variables**. 
-      * GIT_EMAIL
-      * GIT_TOKEN
-      * GIT_USER_NAME
+
       * OPENSHIFT_API_LOGIN_SERVER
       * OPENSHIFT_API_LOGIN_TOKEN
   
