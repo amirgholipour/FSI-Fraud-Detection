@@ -43,7 +43,7 @@ class trainModel():
                 save_weights_only=True,
                 monitor='val_Precision',
                 mode='max',
-                save_best_only=True)
+                save_best_only=False)
             self.epochs = epochs
         
         

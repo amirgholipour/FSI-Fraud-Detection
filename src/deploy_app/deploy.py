@@ -37,5 +37,6 @@ class deployApplication():
         print(self.current_path)
         print(self.inference_path)
         # sys.path.append(inference_path+"/deploy/")
-        os.system('python ' +self.inference_path+"/deploy/" +'ocp_deploy.py' )
+#         os.system('python ' +self.inference_path+"/deploy/" +'ocp_deploy.py' )
+        os.system('python ' +self.current_path+"/deploy/" +'ocp_deploy.py' )
 

@@ -41,9 +41,9 @@ class trainModel():
             self.model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
                 filepath=self.save_path,
                 save_weights_only=True,
-                monitor='val_loss',
-                mode='min',
-                save_best_only=True)
+                monitor='val_Precision',
+                mode='max',
+                save_best_only=False)
             self.epochs = epochs
         
         
