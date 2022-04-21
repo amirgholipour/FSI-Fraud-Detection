@@ -3,7 +3,7 @@ import zipfile
 def get_hyper_paras():
     BATCH = 64
     EPOCHS = 100
-    model_Type = 'ml'
+    model_Type = 'dl'
     
     # dataPath = "../data/raw/creditcard.csv"
     with zipfile.ZipFile('../data/raw/creditcard.csv.zip', 'r') as zip_ref:

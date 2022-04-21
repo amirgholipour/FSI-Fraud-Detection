@@ -33,9 +33,9 @@ class buildModel():
         
     def mlModel(self):
         if self.model_name == 'RandomForestClassifier':
-            self.clf = RandomForestClassifier()
+            self.clf = RandomForestClassifier(n_estimators=100)
         elif self.model_name == 'ExtraTreesClassifier':
-            self.clf = ExtraTreesClassifier()
+            self.clf = ExtraTreesClassifier(n_estimators=100)
         elif self.model_name == 'DecisionTreeClassifier':
             self.clf = DecisionTreeClassifier()
         elif self.model_name == 'SupportVectorClassifier':
@@ -48,12 +48,13 @@ class buildModel():
     def dlModel(self):
         self.clf = tf.keras.models.Sequential([
         tf.keras.layers.Dense(
-            256, activation="relu", input_shape=(self.X.shape[1],)
+            512, activation="relu", input_shape=(self.X.shape[1],)
         ),
+        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.Dense(512, activation="relu"),
+        tf.keras.layers.Dropout(0.5),
         tf.keras.layers.Dense(256, activation="relu"),
-        tf.keras.layers.Dropout(0.3),
-        tf.keras.layers.Dense(256, activation="relu"),
-        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dropout(0.5),
         tf.keras.layers.Dense(1, activation="sigmoid"),
     ]
 
