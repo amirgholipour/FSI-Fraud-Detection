@@ -67,12 +67,12 @@ class trainModel():
         # save the model to disk
         self.save_path_workshop = self.save_path.replace('Inference','Workshop')
         joblib.dump(self.clf, self.save_path)
-        shutil.copy(self.save_path, os.getcwd().replace('notebooks','models')) 
+        shutil.copy(self.save_path, os.getcwd().replace('notebooks','deploy')) 
     def saveDlModel(self):
         # save the model to disk
         self.save_path_workshop = self.save_path.replace('Inference','Workshop')
         
-        shutil.copy(self.save_path, os.getcwd().replace('notebooks','models')) 
+        shutil.copy(self.save_path, os.getcwd().replace('notebooks','deploy')) 
 #         self.clf.save(self.save_path)
 #         self.clf.save(self.save_path_workshop)
 
