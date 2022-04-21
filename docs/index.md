@@ -19,9 +19,7 @@ In this introductory workshop, you'll learn how to use **Red Hat OpenShift Data 
 
 * Then we'll automatically produce the semantic image segmentation results like this image:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/prediction_result.png "Make a decision based on the input data")
-{: refdef}
 
 
 And all of this without having to install anything on your own computer, thanks to **Red Hat OpenShift Data Science**\ **Red Hat OpenShift Data Hub**!

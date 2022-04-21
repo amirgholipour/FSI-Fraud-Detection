@@ -8,18 +8,14 @@ nav_order: 2
 
 You should be logged into **Red Hat OpenShift Data Hub**, and be able to see the dashboard, that looks like this:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/Jupyter_hub_route.png "Red Hat OpenShift networking Routes")
-{: refdef}
 
 
 **Red Hat OpenShift Data Hub** brings you on-demand Jupyter Notebooks environments. Don't worry if you've never used notebooks before as this workshop will start with a small tutorial on what they are and how to use them.
 
 * Now that you are logged into to **Red Hat OpenShift Data Hub**, click on the "Launch" link on the JupyterHub card:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/Jupyter_hub_link.png "JupyterHub route")
-{: refdef}
 
 If it's the first time you're launching Jupyter, you will be sent to a page that will require you to login and ask for your authorization to use your user account to authenticate to Jupyter. You should of course allow this if you want to do the workshop...
 
@@ -29,9 +25,7 @@ Once you have authorized access, you will be taken to the JupyterHub "Spawner Op
   * For the **Notebook Image** , select **TensorFlow**, as this is the flavor of notebook we want to use. It includes the TensorFlow library, which is used to do image recognition.
   * From the **Container size** dropdown, select `Default`.
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/j_start.png "select the environment")
-{: refdef}
 
 
   * Enter your personal  **Environment variables**. 
@@ -41,15 +35,11 @@ Once you have authorized access, you will be taken to the JupyterHub "Spawner Op
       * OPENSHIFT_API_LOGIN_SERVER
       * OPENSHIFT_API_LOGIN_TOKEN
   
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/enviroment_variables.png "Enter the environment variables")
-{: refdef}
 
   * At the bottom of the page you can now click on the **Start Server** button:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/start_jupyter_lab.png "Start the environment")
-{: refdef}
 
 
 While your environment is starting,  [let's go to the next section.](step2.md)

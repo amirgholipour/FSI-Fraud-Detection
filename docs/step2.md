@@ -12,36 +12,24 @@ In the "file-browser" like window you're in right now, you'll find the files and
 
 * On the left toolbar, click on the Git icon:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/git_icon.png "Git")
-{: refdef}
 
 * Then click on "Clone a Repository":
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/clone_repo.png "Git")
-{: refdef}
 
 * Enter this URL, `https://github.com/amirgholipour/FSI-Fraud-Detection-Workshop.git`, then click on "CLONE":
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/clone_start_wo.png "Git")
-{: refdef}
 * Enter this URL, `https://github.com/amirgholipour/FSI-Fraud-Detection-Inference.git`, then click on "CLONE":
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/clone_start_in.png "Git")
-{: refdef}
 
 * It takes a few seconds, after which you can double-click and navigate to the newly-created folder, `FSI-Fraud-Detection-Workshop`:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/fsi_folder_click.png "Git")
-{: refdef}
 ---
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/fsi_folder.png "Git folder")
-{: refdef}
 
 [Ready? Let's go to the next section.](step3.md)
 

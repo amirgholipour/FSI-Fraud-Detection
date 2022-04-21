@@ -13,14 +13,10 @@ This section provides a small introduction on how to use Jupyter Notebooks. If y
 * A notebook is an environment where you have *cells* that can display formatted text, or code.
 
 This is an empty cell:
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/cell.png "A notebook cell")
-{: refdef}
 
 And a cell where we have entered some code:
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/cell_code.png "A notebook cell with code")
-{: refdef}
 
 * Code cells contain Python code that can be run interactively. Thats means you can modify the code, then run it. The code will not run on you computer or in the browser, but directly in the environment you are connected to, **Red Hat OpenShift Data Science** in our case.
 
@@ -28,15 +24,11 @@ And a cell where we have entered some code:
 
 The Run button on the toolbar:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/run_button.png "Run button")
-{: refdef}
 
 Our cell after pressing Run:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/cell_run.png "Run cell")
-{: refdef}
 
 As you can see, you have the result of the code that was run in that cell, as well as information on when this particular cell has been run.
 
@@ -54,9 +46,7 @@ Now that we have covered the basics, just give it a try!
 
 * You can also create a notebook by simply clicking on the icon in the launcher:
 
-{:refdef: style="text-align: center;"}
 ![alt text](./assets/img/new_notebook.png "Run cell")
-{: refdef}
 
 * If you want to learn more about notebooks, head to [this page](https://jupyter.org/){:target="_blank"} .
 
