@@ -89,8 +89,6 @@ class preprocessData():
         
         self.current_path= os.getcwd()
         self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
-        
-        
         plt.savefig(self.inference_path+'Distribution.png')
         plt.show()
         
@@ -104,8 +102,6 @@ class preprocessData():
         sns.heatmap(corr,xticklabels=corr.columns,yticklabels=corr.columns,linewidths=.1,cmap="Greens",fmt='.1f',annot=True)
         self.current_path= os.getcwd()
         self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
-        
-        
         plt.savefig(self.inference_path+'Correlations.png')
         plt.show()
 
@@ -125,8 +121,6 @@ class preprocessData():
         self.target.style.background_gradient(cmap="Reds")
         self.current_path= os.getcwd()
         self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
-        
-        
         plt.savefig(self.inference_path+'Frequency.png')
 
         
@@ -140,7 +134,7 @@ class preprocessData():
         self.scaler = preprocessing.StandardScaler().fit(self.X)
         self.scaled_df = self.scaler.transform(self.X)
         self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
-        self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop')
+        self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop').replace('deploy','models')
         joblib.dump(self.scaler, self.scalerPicklePath) 
         joblib.dump(self.scaler, self.scalerPicklePathWS) 
         
@@ -184,8 +178,6 @@ class preprocessData():
         pd.Series(self.y_train_new).value_counts().plot(kind="bar")
         self.current_path= os.getcwd()
         self.inference_path = self.current_path.replace('notebooks','reports')+'/figures/'
-        
-        
         plt.savefig(self.inference_path+'Sampling.png')
 
         

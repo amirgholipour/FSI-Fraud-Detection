@@ -3,7 +3,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 import joblib
 import matplotlib.pyplot as plt
 import sys
-
+import shutil
 sys.path.append("..")
 import os
 class trainModel():
@@ -33,8 +33,17 @@ class trainModel():
             self.val_y = val_data[1]
         self.model_type = modelType
         self.save_path = savePath
+        self.save_path_workshop = self.save_path.replace('Inference','Workshop').replace('deploy','models')
+
         if self.model_type =='dl':
-            self.early_stop = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience = 10)
+            self.early_stop = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience = 20)
+
+            self.model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
+                filepath=self.save_path,
+                save_weights_only=True,
+                monitor='val_Precision',
+                mode='max',
+                save_best_only=True)
             self.epochs = epochs
         
         
@@ -50,7 +59,7 @@ class trainModel():
         
         self.clf.fit(x=self.X, y=self.y, batch_size = 2048, epochs=self.epochs,
           validation_data=(self.val_X , self.val_y), verbose=1,
-          callbacks=[self.early_stop],class_weight = {0: .05, 1: .95})#,class_weight = {0: .01, 1: .99})#,class_weight = self.class_weight)#,shuffle=True
+          callbacks=[self.early_stop,self.model_checkpoint_callback ],class_weight = {0: .01, 1: .99})#,class_weight = {0: .01, 1: .99})#,class_weight = self.class_weight)#,shuffle=True
         self.saveDlModel()
                 
 
@@ -58,12 +67,14 @@ class trainModel():
         # save the model to disk
         self.save_path_workshop = self.save_path.replace('Inference','Workshop')
         joblib.dump(self.clf, self.save_path)
-        joblib.dump(self.clf, self.save_path_workshop)
+        shutil.copy(self.save_path, os.getcwd().replace('notebooks','models')) 
     def saveDlModel(self):
         # save the model to disk
         self.save_path_workshop = self.save_path.replace('Inference','Workshop')
-        self.clf.save(self.save_path)
-        self.clf.save(self.save_path_workshop)
+        
+        shutil.copy(self.save_path, os.getcwd().replace('notebooks','models')) 
+#         self.clf.save(self.save_path)
+#         self.clf.save(self.save_path_workshop)
 
     
     def modelTraining(self):

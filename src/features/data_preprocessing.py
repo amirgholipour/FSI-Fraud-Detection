@@ -134,7 +134,7 @@ class preprocessData():
         self.scaler = preprocessing.StandardScaler().fit(self.X)
         self.scaled_df = self.scaler.transform(self.X)
         self.scaled_df = pd.DataFrame(self.scaled_df,columns=self.names)
-        self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop')
+        self.scalerPicklePathWS = self.scalerPicklePath.replace('Inference','Workshop').replace('deploy','models')
         joblib.dump(self.scaler, self.scalerPicklePath) 
         joblib.dump(self.scaler, self.scalerPicklePathWS) 
         

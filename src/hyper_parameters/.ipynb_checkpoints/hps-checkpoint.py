@@ -15,16 +15,16 @@ def get_hyper_paras():
     # refRepoName = 'FSI-Fraud-Detection-Inference'
     if model_Type == 'ml':
     
-        model_dir= base +'/'+refRepoName +'/'+ 'models/finalized_ml_model.sav'
+        model_dir= base +'/'+refRepoName +'/'+ 'deploy/finalized_ml_model.sav'
         model_Name = 'ExtraTreesClassifier' #'LogisticRegression' , 'ExtraTreesClassifier', 'RandomForestClassifier','SupportVectorClassifier', 'KNeighborsClassifier','DecisionTreeClassifier'
         # model_dir_workshop= base +'/'+sourceRepoName +'/'+ 'models/finalized_ml_model.pkl'
     else:
-        model_dir= base +'/'+refRepoName +'/'+ 'models/finalized_dl_model.h5'
+        model_dir= base +'/'+refRepoName +'/'+ 'deploy/finalized_dl_model.h5'
         model_Name = 'MLP'
         # model_dir_workshop= base +'/'+sourceRepoName +'/'+ 'models/finalized_dl_model.h5'
         
     dataPath = base +'/'+sourceRepoName +'/'+'data/raw/creditcard.csv'
-    scalerPicklePath = base +'/'+refRepoName +'/'+'models/scaler.pkl'
+    scalerPicklePath = base +'/'+refRepoName +'/'+'deploy/scaler.pkl'
     refRepoDir = base +'/'+refRepoName 
     sourceRepoDir = base +'/'+sourceRepoName
     return dataPath,BATCH,EPOCHS,model_Type,model_Name, model_dir,refRepoName,sourceRepoName,refRepoDir,sourceRepoDir,scalerPicklePath
