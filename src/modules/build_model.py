@@ -33,9 +33,9 @@ class buildModel():
         
     def mlModel(self):
         if self.model_name == 'RandomForestClassifier':
-            self.clf = RandomForestClassifier()
+            self.clf = RandomForestClassifier(n_estimators=100)
         elif self.model_name == 'ExtraTreesClassifier':
-            self.clf = ExtraTreesClassifier()
+            self.clf = ExtraTreesClassifier(n_estimators=100)
         elif self.model_name == 'DecisionTreeClassifier':
             self.clf = DecisionTreeClassifier()
         elif self.model_name == 'SupportVectorClassifier':
