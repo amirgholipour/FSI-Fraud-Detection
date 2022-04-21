@@ -1,7 +1,4 @@
 imblearn
-tensorflow==2.4.1
-scikit-learn==1.0.2
 seaborn 
 pandas
 matplotlib
-tensorflow-addons
