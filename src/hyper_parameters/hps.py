@@ -16,7 +16,7 @@ def get_hyper_paras():
     if model_Type == 'ml':
     
         model_dir= base +'/'+refRepoName +'/'+ 'models/finalized_ml_model.sav'
-        model_Name = 'RandomForestClassifier' #'LogisticRegression' , 'ExtraTreesClassifier', 'RandomForestClassifier','SupportVectorClassifier', 'KNeighborsClassifier','DecisionTreeClassifier'
+        model_Name = 'ExtraTreesClassifier' #'LogisticRegression' , 'ExtraTreesClassifier', 'RandomForestClassifier','SupportVectorClassifier', 'KNeighborsClassifier','DecisionTreeClassifier'
         # model_dir_workshop= base +'/'+sourceRepoName +'/'+ 'models/finalized_ml_model.pkl'
     else:
         model_dir= base +'/'+refRepoName +'/'+ 'models/finalized_dl_model.h5'
