@@ -80,7 +80,7 @@ class buildModel():
         
         '''
         
-        self.clf.compile(optimizer=tf.keras.optimizers.Adam(lr=0.01), loss='binary_crossentropy',
+        self.clf.compile(optimizer=tf.keras.optimizers.Adam(lr=0.001), loss='binary_crossentropy',
               metrics=[
                          # tf.keras.metrics.TrueNegatives(name='True_Negatives'),
               # tf.keras.metrics.FalseNegatives(name='False_Negatives'),
