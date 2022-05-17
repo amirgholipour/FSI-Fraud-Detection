@@ -2,7 +2,7 @@
 layout: default
 nav_order: 3
 ---
-[Back to the previous section](step7.md)
+[Back to the previous section](step4.md)
 
 # Conclusion
 
@@ -20,8 +20,5 @@ To learn more about **Red Hat OpenShift Data Science**, please go to <https://ww
 * [Step 2: The Jupyter environment](step2.md)
 * [Step 3: Notebooks](step3.md)
 * [Step 4: FSI Credit Fraud Detection](step4.md)
-* [Step 5: Packaging the model as an API](step5.md)
-* [Step 6: Packaging our application](step6.md)
-* [Step 7: Testing the application](step7.md)
-* [Conclusion](step8.md)**<-- you are here**
+* [Conclusion](step5.md)**<-- you are here**
 <!-- endnav -->
